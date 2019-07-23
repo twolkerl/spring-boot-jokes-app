@@ -1,8 +1,12 @@
 package com.twl.springbootjokesapp.controller;
 
+import com.twl.springbootjokesapp.model.Joke;
 import com.twl.springbootjokesapp.service.JokeService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,5 +27,12 @@ public class JokeController {
         model.addAttribute("joke", jokeService.getJoke());
 
         return CHUCKNORRIS_VIEW;
+    }
+
+    @GetMapping({"/", "get-joke"})
+    public ResponseEntity<Joke> getJoke() {
+        return ResponseEntity
+                .status(HttpStatus.ACCEPTED)
+                .body(jokeService.httpGetJoke());
     }
 }
