@@ -9,8 +9,9 @@ public class JokeServiceImpl implements JokeService {
 
     private final ChuckNorrisQuotes chuckNorrisQuotes;
 
-    public JokeServiceImpl() {
-        this.chuckNorrisQuotes = new ChuckNorrisQuotes();
+    // Desta maneira foi necessário criar um Configuration "marcando" ChuckNorrisQuotes como um Bean
+    public JokeServiceImpl(ChuckNorrisQuotes chuckNorrisQuotes) {
+        this.chuckNorrisQuotes = chuckNorrisQuotes;
     }
 
     @Override
